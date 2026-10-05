@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Trang web giới thiệu bản thân của Trần Minh Huy, sinh viên năm nhất ngành An toàn thông tin.">
+  <title>Trần Minh Huy | Trang cá nhân</title>
+  <style>
+    :root {
+      --bg: #071426;
+      --panel: #10233d;
+      --panel-light: #f5f8fc;
+      --text: #eaf2ff;
+      --muted: #a9bfdc;
+      --blue: #48b8ff;
+      --blue-dark: #1479d0;
+      --ink: #172b49;
+      --white: #ffffff;
+      --line: rgba(120, 180, 235, .22);
+      --shadow: 0 12px 32px rgba(0, 0, 0, .16);
+    }
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      font-family: "Segoe UI", Arial, sans-serif;
+      background: var(--panel-light);
+      color: var(--ink);
+      line-height: 1.65;
+    }
+    a { color: inherit; }
+    .topbar {
+      position: sticky; top: 0; z-index: 10;
+      background: rgba(7, 20, 38, .96);
+      border-bottom: 1px solid var(--line);
+      backdrop-filter: blur(12px);
+    }
+    .nav {
+      max-width: 1180px; margin: auto; padding: 14px 22px;
+      display: flex; justify-content: space-between; align-items: center; gap: 18px;
+    }
+    .brand { color: var(--white); font-weight: 800; font-size: 1.12rem; text-decoration: none; white-space: nowrap; }
+    .brand span { color: var(--blue); }
+    .nav-links { display: flex; gap: 18px; flex-wrap: wrap; justify-content: flex-end; }
+    .nav-links a { color: #dbe8fa; text-decoration: none; font-size: .92rem; }
+    .nav-links a:hover { color: var(--blue); }
+    .hero {
+      color: var(--text);
+      background:
+        radial-gradient(circle at 82% 30%, rgba(20, 121, 208, .28), transparent 28%),
+        linear-gradient(125deg, #071426 0%, #0c2442 62%, #092e54 100%);
+      overflow: hidden;
+    }
+    .hero-inner {
+      max-width: 1180px; margin: auto; padding: 76px 22px 82px;
+      display: grid; grid-template-columns: 1.2fr .8fr; gap: 48px; align-items: center;
+    }
+    .eyebrow { color: var(--blue); font-weight: 700; letter-spacing: .13em; text-transform: uppercase; font-size: .8rem; }
+    h1 { font-size: clamp(2.5rem, 6vw, 4.5rem); line-height: 1.08; margin: 12px 0; letter-spacing: -.04em; }
+    h1 span { color: var(--blue); }
+    .subtitle { color: #d7e7fb; font-size: clamp(1.05rem, 2vw, 1.3rem); margin: 0 0 24px; }
+    .intro { max-width: 660px; color: var(--muted); }
+    .details { display: grid; gap: 9px; margin: 24px 0; color: #e6f0ff; }
+    .details strong { color: var(--blue); display: inline-block; min-width: 100px; }
+    .actions { display: flex; gap: 12px; flex-wrap: wrap; margin-top: 25px; }
+    .btn { display: inline-block; padding: 11px 18px; border-radius: 10px; font-weight: 700; text-decoration: none; border: 1px solid var(--blue); }
+    .btn.primary { background: var(--blue); color: #06172b; }
+    .btn.secondary { color: var(--text); }
+    .hero-art { min-height: 300px; display: grid; place-items: center; position: relative; }
+    .shield {
+      width: min(280px, 72vw); aspect-ratio: 1; border-radius: 36% 36% 45% 45%;
+      border: 2px solid rgba(72,184,255,.75); background: linear-gradient(145deg, rgba(72,184,255,.18), rgba(10,39,71,.25));
+      display: grid; place-items: center; box-shadow: 0 0 60px rgba(30,150,255,.18), inset 0 0 35px rgba(72,184,255,.08);
+      transform: rotate(45deg);
+    }
+    .shield-inner { transform: rotate(-45deg); text-align: center; color: var(--blue); }
+    .shield-inner .symbol { font-size: 5.5rem; line-height: 1; }
+    .shield-inner p { color: var(--text); font-weight: 700; margin: 12px 0 0; }
+    .content { max-width: 1180px; margin: auto; padding: 58px 22px 70px; }
+    .section-heading { margin-bottom: 26px; }
+    .section-heading .eyebrow { color: var(--blue-dark); }
+    h2 { font-size: clamp(1.65rem, 3vw, 2.25rem); margin: 5px 0; color: #102847; }
+    .section-desc { color: #62758e; margin: 0; }
+    .grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 20px; }
+    .card {
+      background: var(--white); padding: 26px; border: 1px solid #e2eaf4;
+      border-radius: 18px; box-shadow: var(--shadow);
+    }
+    .card h3 { margin: 0 0 12px; color: #102847; font-size: 1.2rem; }
+    .icon { display: inline-grid; place-items: center; width: 42px; height: 42px; border-radius: 12px; background: #e5f4ff; color: var(--blue-dark); margin-bottom: 12px; font-size: 1.35rem; }
+    .card p { margin: 8px 0; }
+    .muted { color: #62758e; }
+    .timeline { border-left: 2px solid #c5e8ff; margin-left: 8px; padding-left: 20px; }
+    .timeline-item { position: relative; margin: 0 0 18px; }
+    .timeline-item:last-child { margin-bottom: 0; }
+    .timeline-item::before { content: ""; position: absolute; width: 10px; height: 10px; background: var(--blue-dark); border-radius: 50%; left: -26px; top: 8px; }
+    .tag-list { display: flex; flex-wrap: wrap; gap: 9px; margin-top: 14px; }
+    .tag { background: #eaf5ff; color: #155b91; border-radius: 999px; padding: 6px 11px; font-size: .9rem; font-weight: 600; }
+    .achievement { border-left: 4px solid var(--blue); background: linear-gradient(110deg, #e9f6ff, #fff); }
+    .achievement strong { display: block; font-size: 1.08rem; color: #0e4d83; }
+    .quote {
+      margin-top: 24px; padding: 28px; border-radius: 18px; color: var(--text);
+      background: linear-gradient(120deg, #0c2442, #104a7d);
+      text-align: center; font-size: 1.12rem;
+    }
+    .quote p { margin: 0; }
+    footer { background: #061326; color: #a9bfdc; text-align: center; padding: 24px 18px; font-size: .9rem; }
+    footer strong { color: var(--blue); }
+    @media (max-width: 760px) {
+      .nav { align-items: flex-start; flex-direction: column; }
+      .nav-links { justify-content: flex-start; gap: 10px 16px; }
+      .hero-inner { grid-template-columns: 1fr; padding-top: 54px; gap: 22px; }
+      .hero-art { min-height: 230px; }
+      .shield { width: 205px; }
+      .shield-inner .symbol { font-size: 4rem; }
+      .grid { grid-template-columns: 1fr; }
+      .content { padding-top: 42px; }
+    }
+    @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
+  </style>
+</head>
+<body>
+  <header class="topbar">
+    <nav class="nav" aria-label="Điều hướng chính">
+      <a class="brand" href="#home"><span>◆</span> Trần Minh Huy</a>
+      <div class="nav-links">
+        <a href="#about">Giới thiệu</a>
+        <a href="#education">Học vấn</a>
+        <a href="#skills">Chuyên môn</a>
+        <a href="#experience">Kinh nghiệm</a>
+        <a href="#hobbies">Sở thích</a>
+        <a href="#achievement">Thành tích</a>
+      </div>
+    </nav>
+  </header>
+
+  <main>
+    <section class="hero" id="home">
+      <div class="hero-inner">
+        <div id="about">
+          <div class="eyebrow">Trang web cá nhân</div>
+          <h1>Xin chào,<br>mình là <span>Trần Minh Huy</span></h1>
+          <p class="subtitle">Sinh viên năm nhất ngành An toàn thông tin</p>
+          <p class="intro">Mình yêu thích công nghệ, đặc biệt là lĩnh vực bảo vệ dữ liệu và an toàn trên không gian mạng. Mình luôn sẵn sàng học hỏi, rèn luyện kỹ năng và thử sức với những kiến thức mới.</p>
+          <div class="details">
+            <div><strong>Ngày sinh</strong> 02/08/2008</div>
+            <div><strong>Địa chỉ</strong> Khu vực 3, Phường Ngã Năm, Thành phố Cần Thơ</div>
+          </div>
+          <div class="actions">
+            <a class="btn primary" href="#education">Tìm hiểu về mình</a>
+            <a class="btn secondary" href="#achievement">Xem thành tích</a>
+          </div>
+        </div>
+        <div class="hero-art" aria-label="Biểu tượng bảo mật thông tin">
+          <div class="shield"><div class="shield-inner"><div class="symbol">⌑</div><p>INFORMATION<br>SECURITY</p></div></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="content" aria-label="Thông tin cá nhân">
+      <div class="section-heading">
+        <div class="eyebrow">Về bản thân</div>
+        <h2>Hành trình học tập và phát triển</h2>
+        <p class="section-desc">Những điều mình đang học hỏi và mục tiêu hướng đến.</p>
+      </div>
+
+      <div class="grid">
+        <article class="card" id="education">
+          <div class="icon" aria-hidden="true">▤</div>
+          <h3>Quá trình học</h3>
+          <div class="timeline">
+            <div class="timeline-item">
+              <strong>2026 – Hiện tại</strong>
+              <p>Sinh viên năm nhất ngành An toàn thông tin.</p>
+              <p class="muted">Tập trung xây dựng kiến thức nền tảng về máy tính, mạng máy tính và bảo mật thông tin.</p>
+            </div>
+            <div class="timeline-item">
+              <strong>Trước năm 2026</strong>
+              <p>Hoàn thành chương trình giáo dục phổ thông.</p>
+              <p class="muted">Rèn luyện kiến thức, tinh thần tự học và kỹ năng làm việc cùng mọi người.</p>
+            </div>
+          </div>
+        </article>
+
+        <article class="card" id="skills">
+          <div class="icon" aria-hidden="true">⌘</div>
+          <h3>Lĩnh vực chuyên môn</h3>
+          <p>Mình đang tìm hiểu các kiến thức cơ bản trong ngành An toàn thông tin, gồm:</p>
+          <div class="tag-list">
+            <span class="tag">An toàn thông tin</span>
+            <span class="tag">Mạng máy tính</span>
+            <span class="tag">Bảo mật tài khoản</span>
+            <span class="tag">An toàn dữ liệu</span>
+            <span class="tag">Lập trình cơ bản</span>
+          </div>
+          <p class="muted">Đây là các lĩnh vực đang học tập và định hướng phát triển, không phải danh sách chứng chỉ chuyên môn.</p>
+        </article>
+
+        <article class="card" id="experience">
+          <div class="icon" aria-hidden="true">▣</div>
+          <h3>Kinh nghiệm</h3>
+          <p><strong>Giai đoạn học tập và tích lũy nền tảng</strong></p>
+          <p>Hiện mình là sinh viên năm nhất nên đang tập trung học kiến thức cơ sở, thực hành theo bài học và làm quen với các công cụ công nghệ.</p>
+          <ul>
+            <li>Chủ động tìm hiểu kiến thức về máy tính và an toàn trên Internet.</li>
+            <li>Rèn luyện kỹ năng tự học, giải quyết vấn đề và làm việc nhóm.</li>
+            <li>Mong muốn tham gia thêm các dự án thực hành về an toàn thông tin trong thời gian tới.</li>
+          </ul>
+        </article>
+
+        <article class="card" id="hobbies">
+          <div class="icon" aria-hidden="true">♡</div>
+          <h3>Sở thích</h3>
+          <p>Thể thao là sở thích giúp mình rèn luyện sức khỏe, thư giãn sau giờ học và duy trì tinh thần tích cực.</p>
+          <div class="tag-list">
+            <span class="tag">⚽ Vận động</span>
+            <span class="tag">🏃 Rèn luyện sức khỏe</span>
+            <span class="tag">🤝 Tinh thần đồng đội</span>
+          </div>
+        </article>
+
+        <article class="card achievement" id="achievement">
+          <div class="icon" aria-hidden="true">★</div>
+          <h3>Thành tích cá nhân</h3>
+          <strong>Giải Nhì – Cuộc thi Khoa học Kỹ thuật cấp thành phố</strong>
+          <p class="muted">Đây là thành tích đáng nhớ, giúp mình có thêm động lực học tập, khám phá khoa học và tiếp tục phát triển bản thân.</p>
+        </article>
+
+        <article class="card">
+          <div class="icon" aria-hidden="true">◎</div>
+          <h3>Mục tiêu tương lai</h3>
+          <p>Mình mong muốn củng cố kiến thức chuyên ngành, tăng cường thực hành và từng bước phát triển kỹ năng cần thiết để theo đuổi lĩnh vực An toàn thông tin.</p>
+          <p class="muted">Phương châm: học hỏi mỗi ngày, tiến bộ từng bước.</p>
+        </article>
+      </div>
+
+      <div class="quote">
+        <p>“Học hỏi hôm nay – kiến tạo tương lai an toàn hơn.”</p>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <p>© <span id="year">2026</span> <strong>Trần Minh Huy</strong> · Trang web giới thiệu bản thân</p>
+    <p>Được xây dựng bằng HTML và CSS · Dành cho GitHub Pages</p>
+  </footer>
+</body>
+</html>
